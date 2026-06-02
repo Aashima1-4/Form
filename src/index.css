@@ -1,0 +1,859 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Courier+Prime&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-primary: 'Inter', sans-serif;
+  --font-header: 'Outfit', sans-serif;
+  --font-classic: 'Playfair Display', serif;
+  --font-mono: 'Courier Prime', monospace;
+  --font-script: 'Alex Brush', cursive;
+
+  /* App Dashboard Theme (Sleek Dark Mode Dashboard) */
+  --app-bg: #0b0f19;
+  --app-panel-bg: rgba(17, 24, 39, 0.7);
+  --app-panel-border: rgba(255, 255, 255, 0.08);
+  --app-text: #f3f4f6;
+  --app-text-muted: #9ca3af;
+  --app-accent: #6366f1;
+  --app-accent-hover: #4f46e5;
+  --app-border: #1f2937;
+
+  /* Paper Sheet Color Themes (Fully Dynamic!) */
+  --paper-theme-primary: #000000;
+  --paper-theme-secondary: #333333;
+  --paper-bg: #ffffff;
+  --paper-text: #000000;
+  --paper-text-muted: #111111;
+  --paper-border: #000000;
+  --paper-line: #000000;
+
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--app-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* App Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 2rem;
+  background-color: rgba(17, 24, 39, 0.9);
+  border-bottom: 1px solid var(--app-border);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.app-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-title-icon {
+  color: var(--app-accent);
+}
+
+.app-header h1 {
+  font-family: var(--font-header);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+.app-header p {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+  margin: 0;
+}
+
+.app-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Main Dashboard Workspace */
+.app-workspace {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+/* Left Sidebar: Controls and Forms */
+.app-sidebar {
+  width: 420px;
+  background-color: var(--app-panel-bg);
+  border-right: 1px solid var(--app-border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  backdrop-filter: blur(16px);
+}
+
+.sidebar-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--app-border);
+  background-color: rgba(17, 24, 39, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.85rem 0.5rem;
+  background: none;
+  border: none;
+  color: var(--app-text-muted);
+  font-family: var(--font-header);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.tab-btn.active {
+  color: var(--app-accent);
+  border-bottom-color: var(--app-accent);
+  background-color: rgba(99, 102, 241, 0.04);
+}
+
+.sidebar-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Sidebar Section Titles */
+.section-title {
+  font-family: var(--font-header);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--app-border);
+  padding-bottom: 0.4rem;
+}
+
+.section-title svg {
+  color: var(--app-accent);
+}
+
+/* Modern Form Controls */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--app-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-control {
+  background-color: rgba(17, 24, 39, 0.6);
+  border: 1px solid var(--app-border);
+  border-radius: 0.375rem;
+  padding: 0.6rem 0.75rem;
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--app-accent);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.4;
+}
+
+/* Signature Pad Control Panel */
+.sig-control-block {
+  background: rgba(17, 24, 39, 0.3);
+  border: 1px solid var(--app-border);
+  border-radius: 0.5rem;
+  padding: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.sig-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.sig-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.sig-type-toggle {
+  display: flex;
+  background: rgba(17, 24, 39, 0.8);
+  border-radius: 0.25rem;
+  padding: 0.15rem;
+  border: 1px solid var(--app-border);
+}
+
+.toggle-item {
+  padding: 0.2rem 0.45rem;
+  font-size: 0.7rem;
+  border-radius: 0.2rem;
+  border: none;
+  background: none;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.toggle-item.active {
+  background-color: var(--app-accent);
+  color: #fff;
+}
+
+/* Typed signature inputs */
+.signature-typed-input {
+  margin-top: 0.4rem;
+}
+
+/* Premium Design Presets Sidebar Panel */
+.preset-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.preset-card {
+  background: rgba(17, 24, 39, 0.4);
+  border: 1px solid var(--app-border);
+  border-radius: 0.375rem;
+  padding: 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.preset-card:hover {
+  background: rgba(17, 24, 39, 0.8);
+  border-color: var(--app-accent);
+}
+
+.preset-card.active {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--app-accent);
+}
+
+.preset-name {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #fff;
+  margin-bottom: 0.15rem;
+}
+
+.preset-desc {
+  font-size: 0.65rem;
+  color: var(--app-text-muted);
+  line-height: 1.2;
+}
+
+/* Settings sliders and pickers */
+.theme-selector {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+.theme-color-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.theme-color-dot.active {
+  border-color: #fff;
+  transform: scale(1.1);
+}
+
+.font-selector-group {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.font-selector-group button {
+  flex: 1;
+}
+
+.font-selector-group button.active {
+  border-color: var(--app-accent);
+  background-color: rgba(99, 102, 241, 0.1);
+  color: #fff;
+}
+
+/* Right Panel: A4 Live Preview Bench */
+.app-preview-bench {
+  flex: 1;
+  background-color: #080b11;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: inset 5px 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Paper Sheet Mockup (Perfect A4 Aspect Ratio on Screen) */
+.a4-sheet {
+  width: 210mm;
+  height: 297mm;
+  background-color: var(--paper-bg);
+  color: var(--paper-text);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top center;
+  transition: transform 0.3s ease;
+}
+
+/* Outer framework on the A4 page */
+.paper-outer-frame {
+  border: 1px solid var(--paper-border);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Splitter guideline in middle of page for cutting */
+.sheet-splitter {
+  height: 0;
+  border-top: 1px dashed #666;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  margin: 0;
+}
+
+.sheet-splitter::after {
+  content: "✂ Cut Here (Office vs Officer Copy)";
+  position: absolute;
+  top: -8px;
+  background: var(--paper-bg);
+  padding: 0 8px;
+  font-size: 0.6rem;
+  color: #666;
+  font-family: var(--font-header);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Single Form Representation (takes exactly half-page vertical height) */
+.allotment-form-half {
+  height: calc(50% - 1px);
+  padding: 10mm 12mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Document Header Text - Underlined and bold */
+.formal-header-text {
+  text-align: center;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  color: var(--paper-theme-primary);
+  letter-spacing: 0.02em;
+}
+
+/* Row-based layout for top metadata form */
+.form-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.info-block-col {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.block-title {
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.item-label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.item-value {
+  flex: 1;
+  border-bottom: 1px solid var(--paper-theme-primary);
+  padding-left: 0.25rem;
+  min-height: 1.1rem;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.info-item-nested {
+  margin-top: 0.15rem;
+  width: 100%;
+}
+
+.item-value-nested {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--paper-theme-primary);
+  min-height: 1.4rem;
+  font-size: 0.8rem;
+  padding-left: 0.25rem;
+  font-weight: 500;
+}
+
+/* Detailed government table styling */
+.allotment-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1.5px solid var(--paper-theme-primary);
+  margin-top: 0.25rem;
+}
+
+.allotment-table th,
+.allotment-table td {
+  border: 1.5px solid var(--paper-theme-primary);
+  padding: 0.35rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  vertical-align: middle;
+}
+
+.allotment-table th {
+  font-weight: 700;
+  text-align: center;
+  background-color: transparent;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.align-top-left {
+  vertical-align: top !important;
+  text-align: left;
+}
+
+/* Table interior field setups */
+.nested-field {
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+}
+
+.nested-field-sig {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.label-bold {
+  font-weight: 600;
+}
+
+.table-sig-box {
+  height: 24px;
+  width: 90px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px dashed #666;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+}
+
+.table-sig-box-large {
+  height: 40px;
+  width: 120px;
+  margin: 0.2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-designation-stamp {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+.nested-handover-label {
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+.handover-cell-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.handover-sig-min {
+  height: 24px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.handover-name-min {
+  font-size: 0.7rem;
+  text-align: center;
+  border-top: 1px solid var(--paper-theme-primary);
+  width: 100%;
+  margin-top: 0.15rem;
+  font-weight: 600;
+}
+
+/* Custom font layouts for government presets */
+.font-style-serif {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.font-style-serif .formal-header-text {
+  font-family: Georgia, serif;
+}
+.font-style-serif .allotment-table th {
+  font-family: Georgia, serif;
+}
+
+.font-style-sans {
+  font-family: var(--font-primary);
+}
+
+.font-style-mono {
+  font-family: var(--font-mono);
+}
+
+/* Rendered signatures */
+.doc-signature-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: grayscale(1) contrast(1.2);
+}
+
+.doc-signature-typed {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: #000;
+  user-select: none;
+  font-weight: 500;
+}
+
+.doc-signature-placeholder {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+/* Typography contents */
+.font-content {
+  font-weight: 500;
+}
+
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+
+/* UI General styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-family: var(--font-header);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--app-accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--app-accent-hover);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.toast {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #10b981;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(1rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.zoom-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+  background: rgba(17, 24, 39, 0.8);
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  border: 1px solid var(--app-border);
+  backdrop-filter: blur(4px);
+}
+
+.zoom-btn {
+  background: none;
+  border: none;
+  color: var(--app-text-muted);
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+}
+
+.zoom-btn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================
+   PRINT MEDIA STYLES - CRITICAL FOR A4
+   ========================================== */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    background-color: #fff !important;
+    color: #000 !important;
+    width: 210mm;
+    height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .app-header,
+  .app-sidebar,
+  .zoom-controls,
+  .btn,
+  .toast {
+    display: none !important;
+  }
+
+  .app-workspace {
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .app-preview-bench {
+    background-color: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    display: block !important;
+    height: auto !important;
+  }
+
+  .a4-sheet {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transform: scale(1) !important;
+    background-color: #fff !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .paper-outer-frame {
+    border: 1px solid #000 !important;
+  }
+
+  .sheet-splitter {
+    border-top: 1px dashed #000 !important;
+  }
+
+  .sheet-splitter::after {
+    background: #fff !important;
+    color: #000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .allotment-form-half {
+    height: calc(148.5mm - 1px) !important;
+    padding: 10mm 12mm !important;
+    box-sizing: border-box !important;
+  }
+
+  .allotment-table {
+    border: 1.5px solid #000 !important;
+  }
+
+  .allotment-table th,
+  .allotment-table td {
+    border: 1.5px solid #000 !important;
+  }
+
+  .item-value,
+  .item-value-nested {
+    border-bottom: 1.1px solid #000 !important;
+  }
+
+  .handover-name-min {
+    border-top: 1.1px solid #000 !important;
+  }
+
+  .doc-signature-img {
+    filter: grayscale(1) contrast(1.5) !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
